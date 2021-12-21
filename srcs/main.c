@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:47:43 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/21 15:36:41 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/21 16:16:10 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,31 @@ void	init_cub(t_cub *cub)
 	cub->player.fov = rad(60);
 }
 
-double	h_ray(t_vec2 position, t_vec2 direction)
+t_vec2	h_ray(t_vec2 pos, t_vec2 dir)
 {
+	t_vec2	hit;
 	double	dir_angle;
-	double	dist_y;
+	int		dof;
 
-	dir_angle = vec2_angle(direction);
+	dir_angle = vec2_angle(dir);
 	if (dir_angle == 0 || dir_angle == M_PI)
 		return (-1);
-	dist_y = position.y % 1;
+	if (dir_angle > 0)
+		hit = (t_vec2){(1 - pos.y % 1) / tan(dir_angle) + pos.x, (int)pos.y};
+	else if (dir_angle < 0)
+		hit = (t_vec2){(pos.y % 1) / tan(dir_angle) + pos.x, (int)pos.y + 1};
+	else
+		return (-1);
+	dof = 0;
+	while (dof < 8)
+	{
+		if (map[(int)hit.y][(int)hit.x])
+			return (hit);
+		else
+		{
+			
+		}
+	}
 }
 
 void	draw_floor_sky(t_cub *cub)
