@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 12:15:35 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/21 12:35:27 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/22 08:50:25 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define MATHS_H
 
 # include <math.h>
+
+# define PI		3.141592
+# define PI_2	3.141592 / 2
+# define PI_4	3.141592 / 4
 
 typedef struct s_vec2
 {

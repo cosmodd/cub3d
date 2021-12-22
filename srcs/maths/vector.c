@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 12:19:49 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/21 15:10:03 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/21 17:43:23 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ t_vec2	vec2_rotate(t_vec2 vec, double rad)
 double	vec2_angle(t_vec2 vector)
 {
 	t_vec2	base;
+	double	a1;
+	double	a2;
 
 	base = (t_vec2){1, 0};
-	return (atan2(vector.y, vector.x) - atan2(base.y, base.x));
+	a1 = vector.x * base.y - vector.y * base.x;
+	a2 = vector.x * base.x + vector.y * base.y;
+	return (atan2(a1, a2));
 }
