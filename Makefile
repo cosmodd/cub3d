@@ -1,6 +1,8 @@
 # SOURCES
 SRCS	= srcs/main.c \
 		srcs/maths/angles.c \
+		srcs/maths/utils/distance.c \
+		srcs/maths/utils/in_range.c \
 		srcs/maths/vector.c \
 		srcs/xutils/colors.c \
 		srcs/xutils/images.c \
@@ -10,7 +12,7 @@ OBJS	= $(SRCS:.c=.o)
 
 # COMPILATION
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -Ofast
 INCS	= -Iincludes -Iminilibx
 LIBS	= -Lminilibx -lmlx
 OPTS	= -framework OpenGL -framework AppKit

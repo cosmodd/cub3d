@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 12:15:35 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/22 08:50:25 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/22 12:56:40 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,21 @@
 # include <math.h>
 
 # define PI		3.141592
-# define PI_2	3.141592 / 2
-# define PI_4	3.141592 / 4
+# define PI_2	1.570796
+# define PI_4	0.785398
 
 typedef struct s_vec2
 {
 	double	x;
 	double	y;
 }	t_vec2;
+
+// Utils
+int		distance_d(int x1, int y1, int x2, int y2);
+double	distance_fd(double x1, double y1, double x2, double y2);
+int		in_range_fd(double value, double lower, double upper, int inclusive);
+int		in_range_ff(float value, float lower, float upper, int inclusive);
+int		in_range_d(int value, int lower, int upper, int inclusive);
 
 // Angles
 double	rad(double degrees);

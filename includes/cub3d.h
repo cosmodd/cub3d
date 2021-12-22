@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:48:24 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/21 15:09:07 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/22 14:38:53 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <limits.h>
+# include <float.h>
+# include <time.h>
 # include "keys.h"
 # include "mlx.h"
 # include "maths.h"
@@ -33,6 +38,9 @@ typedef struct s_cub
 	void		*window;
 	int			width;
 	int			height;
+	int			map_width;
+	int			map_height;
+	int			keys[512];
 	t_player	player;
 	t_image		frame;
 	t_image		minimap;
