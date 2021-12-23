@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 12:15:35 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/22 12:56:40 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/23 12:10:52 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ double	vec2_norm(t_vec2 vec);
 double	vec2_scalar(t_vec2 a, t_vec2 b);
 t_vec2	vec2_rotate(t_vec2 vec, double rad);
 double	vec2_angle(t_vec2 vector);
+double	vec2_angle_from(t_vec2 v1, t_vec2 v2);
 
 #endif
