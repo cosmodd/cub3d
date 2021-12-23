@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:48:24 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/22 14:38:53 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:28:14 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@
 # include "mlx.h"
 # include "maths.h"
 # include "xutils.h"
+
+typedef enum e_side
+{
+	NORTH = 1,
+	EAST = 2,
+	SOUTH = 3,
+	WEST = 4
+}	t_side;
+
+typedef struct s_ray
+{
+	t_vec2	pos;
+	t_side	side;
+	double	dist;
+	int		value;
+}	t_ray;
 
 typedef struct s_player
 {
