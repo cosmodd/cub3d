@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 12:15:35 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/23 12:10:52 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/28 11:40:11 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ double	distance_fd(double x1, double y1, double x2, double y2);
 int		in_range_fd(double value, double lower, double upper, int inclusive);
 int		in_range_ff(float value, float lower, float upper, int inclusive);
 int		in_range_d(int value, int lower, int upper, int inclusive);
+int		abs_d(int a);
+float	abs_ff(float a);
+double	abs_fd(double a);
 
 // Angles
 double	rad(double degrees);

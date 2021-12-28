@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:45:08 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/21 14:42:46 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/28 14:17:20 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef struct s_image
 
 // Color utils
 int		rgb(int r, int g, int b);
+int		rgba(int r, int g, int b, int a);
+int		lighten(int color, double percentage);
+int		darken(int color, double percentage);
 
 // Image manipulation
 t_image	new_image(void *mlx, int width, int height);

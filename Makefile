@@ -1,6 +1,7 @@
 # SOURCES
 SRCS	= srcs/main.c \
 		srcs/maths/angles.c \
+		srcs/maths/utils/abs.c \
 		srcs/maths/utils/distance.c \
 		srcs/maths/utils/in_range.c \
 		srcs/maths/vector.c \
