@@ -4,6 +4,7 @@ SRCS	= srcs/main.c \
 		srcs/maths/utils/abs.c \
 		srcs/maths/utils/distance.c \
 		srcs/maths/utils/in_range.c \
+		srcs/maths/utils/min_max.c \
 		srcs/maths/vector.c \
 		srcs/maths/vector2.c \
 		srcs/xutils/colors.c \

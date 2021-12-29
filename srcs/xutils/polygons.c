@@ -6,11 +6,18 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:45:54 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/21 14:42:25 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/29 10:25:59 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xutils.h"
+#include "maths.h"
+#include <stdio.h>
+
+static int	edge(t_point a, t_point b, t_point p)
+{
+	return ((p.x - a.x) * (b.y - a.y) - (p.y - a.y) * (b.x - a.x));
+}
 
 void	draw_square(t_image img, t_point origin, int size, int color)
 {
@@ -24,6 +31,31 @@ void	draw_square(t_image img, t_point origin, int size, int color)
 		while (x < size)
 		{
 			put_pixel(img, origin.x + x, origin.y + y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_triangle(t_image image, t_point a, t_point b, t_point c)
+{
+	int	x;
+	int	y;
+	int	w;
+	int	h;
+
+	w = max(a.x, max(b.x, c.x));
+	h = max(a.y, max(b.y, c.y));
+	y = min(a.y, min(b.y, c.y));
+	while (y < h)
+	{
+		x = min(a.x, min(b.x, c.x));
+		while (x < w)
+		{
+			if (edge(a, b, (t_point){x, y}) >= 0
+			&& edge(b, c, (t_point){x, y}) >= 0
+			&& edge(c, a, (t_point){x, y}) >= 0)
+				put_pixel(image, x, y, 0xFFFFFF);
 			x++;
 		}
 		y++;

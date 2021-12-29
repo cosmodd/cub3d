@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:47:43 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/28 16:10:58 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/29 15:00:45 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,37 @@
 // 	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
 // };
 
-int	map[15][30] = {
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0},
-	{1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,0,0},
-	{1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,0},
-	{1,0,1,1,0,0,1,1,0,0,1,1,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0},
-	{1,0,1,1,1,0,0,0,0,1,1,1,0,1,1,1,0,0,0,1,1,1,0,0,0,0,0,0,1,1},
-	{1,0,0,1,1,1,0,0,1,1,1,0,0,0,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,1,1,1,0,0,1,1,1,0,0,0,1,1,1,0,1,1,1,0,0,0,0,0,0,0,0,1},
-	{1,0,1,1,1,0,0,0,0,1,1,1,0,1,1,1,0,0,0,1,1,1,0,0,0,0,0,0,1,1},
-	{1,0,1,1,0,0,1,1,0,0,1,1,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0},
-	{1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,0},
-	{1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,0,0},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0}
+int	map[30][30] = {
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,1,1,1,0,0,0,0,1},
+	{1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1},
+	{1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,1,1},
+	{1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1},
+	{1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1},
+	{1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,1,0,0,0,0,1},
+	{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1},
+	{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1},
+	{1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1},
+	{1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,1,1},
+	{1,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1},
+	{1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1},
+	{1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1},
+	{1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
 int	wall_texture[64][64] = {
@@ -249,10 +264,10 @@ void	init_cub(t_cub *cub)
 	cub->width = 1280;
 	cub->height = 720;
 	cub->map_width = 30;
-	cub->map_height = 15;
+	cub->map_height = 30;
 	cub->window = mlx_new_window(cub->mlx, cub->width, cub->height, "Cub3D");
 	cub->frame = new_image(cub->mlx, cub->width, cub->height);
-	cub->minimap = new_image(cub->mlx, cub->width / 4, cub->height / 4);
+	cub->minimap = new_image(cub->mlx, cub->width, cub->height);
 	cub->player.pos.x = 1.5;
 	cub->player.pos.y = 1.5;
 	cub->player.dir.x = 1;
@@ -262,16 +277,12 @@ void	init_cub(t_cub *cub)
 }
 
 
-t_vec2	h_ray(t_cub *cub, t_vec2 pos, t_vec2 dir, int size)
+t_vec2	h_ray(t_cub *cub, t_vec2 pos, t_vec2 dir)
 {
-	// t_vec2	prev_hit;
 	t_vec2	hit;
 	double	dir_angle;
 	int		dof;
-	(void) size;
 
-	// prev_hit.x = pos.x;
-	// prev_hit.y = pos.y;
 	hit.x = DBL_MAX;
 	hit.y = DBL_MAX;
 	dir_angle = vec2_angle(dir);
@@ -284,23 +295,12 @@ t_vec2	h_ray(t_cub *cub, t_vec2 pos, t_vec2 dir, int size)
 	dof = 0;
 	while (dof < cub->map_width)
 	{
-		// draw_line(cub->minimap, \
-			// (t_point){prev_hit.x * size, prev_hit.y * size}, \
-			// (t_point){hit.x * size, hit.y * size}, 0xFF00FF);
-		// draw_square(cub->minimap, \
-			// (t_point){hit.x * size - 1, hit.y * size - 1}, \
-			// 3, 0xFF00FF);
 		if (hit.x < 0 || hit.x >= cub->map_width || \
 			hit.y < 0 || hit.y >= cub->map_height || \
 			map[(int)hit.y][(int)hit.x])
 			return (hit);
-		// if (map[(int)hit.y][(int)hit.x] || (hit.x < 0 || hit.x >= cub->map_width) \
-		// 								|| (hit.y < 0 || hit.y >= cub->map_height))
-		// 	return (hit);
 		else
 		{
-			// prev_hit.x = hit.x;
-			// prev_hit.y = hit.y;
 			hit.y += (sin(dir_angle) < -0.001) * 2 - 1;
 			hit.x -= ((sin(dir_angle) < -0.001) * 2 - 1) / tan(dir_angle);
 			dof++;
@@ -309,16 +309,12 @@ t_vec2	h_ray(t_cub *cub, t_vec2 pos, t_vec2 dir, int size)
 	return (hit);
 }
 
-t_vec2	v_ray(t_cub *cub, t_vec2 pos, t_vec2 dir, int size)
+t_vec2	v_ray(t_cub *cub, t_vec2 pos, t_vec2 dir)
 {
-	// t_vec2	prev_hit;
 	t_vec2	hit;
 	double	dir_angle;
 	int		dof;
-	(void) size;
 
-	// prev_hit.x = pos.x;
-	// prev_hit.y = pos.y;
 	hit.x = DBL_MAX;
 	hit.y = DBL_MAX;
 	dir_angle = vec2_angle(dir);
@@ -331,22 +327,12 @@ t_vec2	v_ray(t_cub *cub, t_vec2 pos, t_vec2 dir, int size)
 	dof = 0;
 	while (dof < cub->map_width)
 	{
-		// draw_line(cub->minimap, \
-		// 	(t_point){prev_hit.x * size, prev_hit.y * size}, \
-		// 	(t_point){hit.x * size, hit.y * size}, 0xFFFF00);
-		// draw_square(cub->minimap, \
-		// 	(t_point){hit.x * size - 2, hit.y * size - 2}, \
-		// 	5, 0xFFFF00);
 		if (hit.x < 0 || hit.x >= cub->map_width || \
 			hit.y < 0 || hit.y >= cub->map_height || \
 			map[(int)hit.y][(int)hit.x])
 			return (hit);
-		// if (map[(int)hit.y][(int)hit.x] && (hit.x < 0 || hit.x >= cub->map_width) \
-		// 								&& (hit.y < 0 || hit.y >= cub->map_height))
 		else
 		{
-			// prev_hit.x = hit.x;
-			// prev_hit.y = hit.y;
 			hit.x -= (cos(dir_angle) < -0.001) * 2 - 1;
 			hit.y += ((cos(dir_angle) < -0.001) * 2 - 1) * tan(dir_angle);
 			dof++;
@@ -365,19 +351,9 @@ t_side	get_side(t_vec2 pos, t_vec2 dir, t_vec2 h_ray, t_vec2 v_ray)
 	dist_v = distance_fd(pos.x, pos.y, v_ray.x, v_ray.y);
 	angle = vec2_angle(dir);
 	if (dist_h < dist_v)
-	{
-		if (sin(angle) > 0.001)
-			return (NORTH);
-		else
-			return (SOUTH);
-	}
+		return (1 + 2 * (dir.y < -0.001));
 	else
-	{
-		if (cos(angle) > 0.001)
-			return (EAST);
-		else
-			return (WEST);
-	}
+		return (2 + 2 * (dir.x < -0.001));
 }
 
 t_ray	raycast(t_cub *cub, t_vec2 pos, t_vec2 dir)
@@ -385,23 +361,11 @@ t_ray	raycast(t_cub *cub, t_vec2 pos, t_vec2 dir)
 	t_vec2	rays[2];
 	double	dists[2];
 	t_ray	ray;
-	int		size;
 
-	size = cub->height / 3 / 15;
-	rays[0] = h_ray(cub, pos, dir, size);
-	rays[1] = v_ray(cub, pos, dir, size);
+	rays[0] = h_ray(cub, pos, dir);
+	rays[1] = v_ray(cub, pos, dir);
 	dists[0] = distance_fd(pos.x, pos.y, rays[0].x, rays[0].y);
 	dists[1] = distance_fd(pos.x, pos.y, rays[1].x, rays[1].y);
-	// draw_square(cub->minimap,
-	// 	(t_point){\
-	// 		(int)rays[0].x * size, \
-	// 		(int)rays[0].y * size \
-	// 	}, size, 0xFF00FF);
-	// draw_square(cub->minimap,
-	// 	(t_point){\
-	// 		(int)rays[1].x * size, \
-	// 		(int)rays[1].y * size \
-	// 	}, size, 0xFFFF00);
 	ray.pos = rays[dists[0] > dists[1]];
 	ray.dist = dists[dists[0] > dists[1]];
 	ray.side = get_side(pos, dir, rays[0], rays[1]);
@@ -432,17 +396,17 @@ void	draw_floor_sky(t_cub *cub)
 
 void	draw_minimap(t_cub *cub)
 {
-	t_ray		ray;
-	t_vec2		vector;
-	t_player	player;
+	t_vec2		pos;
+	t_vec2		dir;
 	int			y;
 	int			x;
 	int			size;
 
-	player = cub->player;
-	size = 12;
-	mlx_destroy_image(cub->mlx, cub->minimap.ptr);
-	cub->minimap = new_image(cub->mlx, cub->map_width * size, cub->map_height * size);
+	pos = cub->player.pos;
+	dir = cub->player.dir;
+	size = 10;
+	// mlx_destroy_image(cub->mlx, cub->minimap.ptr);
+	// cub->minimap = new_image(cub->mlx, cub->map_width * size, cub->map_height * size);
 	y = 0;
 	while (y < cub->map_height)
 	{
@@ -457,37 +421,12 @@ void	draw_minimap(t_cub *cub)
 		}
 		y++;
 	}
-	draw_square(cub->minimap,
-		(t_point){\
-			cub->player.pos.x * size - 2, \
-			cub->player.pos.y * size - 2 \
-		}, 5, 0xFFFF00);
-	vector = vec2_rotate(cub->player.dir, cub->player.fov / 2.0);
-	// printf("%d\n", vec2_angle(vector) == vec2_angle(cub->player.dir));
-	draw_line(cub->minimap, \
-		(t_point){player.pos.x * size, player.pos.y * size}, \
-		(t_point){(player.pos.x + vector.x) * size, \
-				(player.pos.y + vector.y) * size}, \
-		0x00FF00);
-	vector = vec2_rotate(cub->player.dir, cub->player.fov / -2.0);
-	// printf("%d\n", vec2_angle(vector) == vec2_angle(cub->player.dir));
-	draw_line(cub->minimap, \
-		(t_point){player.pos.x * size, player.pos.y * size}, \
-		(t_point){(player.pos.x + vector.x) * size, \
-				(player.pos.y + vector.y) * size}, \
-		0x00FF00);
-	draw_line(cub->minimap, \
-		(t_point){player.pos.x * size, player.pos.y * size}, \
-		(t_point){(player.pos.x + player.dir.x) * size, \
-				(player.pos.y + player.dir.y) * size}, \
-		0xFF0000);
-	ray = raycast(cub, cub->player.pos, cub->player.dir);
-	draw_square(cub->minimap,
-		(t_point){\
-			(int)ray.pos.x * size, \
-			(int)ray.pos.y * size \
-		}, size, 0xFF0000);
-	// printf("(%f, %f)\n", vector.x, vector.y);
+	draw_triangle(cub->minimap,
+		(t_point){(pos.x + vec2_rotate(dir, rad(120)).x / 3) * size, \
+			(pos.y + vec2_rotate(dir, rad(120)).y / 3) * size},
+		(t_point){(pos.x + dir.x * .75) * size, (pos.y + dir.y * 0.75) * size},
+		(t_point){(pos.x + vec2_rotate(dir, rad(-120)).x / 3) * size, \
+			(pos.y + vec2_rotate(dir, rad(-120)).y / 3) * size});
 }
 
 void	draw_walls(t_cub *cub)

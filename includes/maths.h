@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 12:15:35 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/28 11:40:11 by mrattez          ###   ########.fr       */
+/*   Updated: 2021/12/29 10:14:02 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int		in_range_d(int value, int lower, int upper, int inclusive);
 int		abs_d(int a);
 float	abs_ff(float a);
 double	abs_fd(double a);
+int		min(int a, int b);
+int		max(int a, int b);
+
 
 // Angles
 double	rad(double degrees);
