@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:55:40 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/28 14:15:54 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/11 11:36:29 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ int	lighten(int color, double percentage)
 	));
 }
 
-int	darken(int color, double percentage)
+int	darken(int color, double p)
 {
+	p = 1 * (p >= 1) + p * (p < 1);
 	return (rgba(\
-		(color >> 16 & 0xFF) * (1 - percentage), \
-		(color >> 8 & 0xFF) * (1 - percentage), \
-		(color >> 0 & 0xFF) * (1 - percentage), \
+		(color >> 16 & 0xFF) * (1 - p), \
+		(color >> 8 & 0xFF) * (1 - p), \
+		(color >> 0 & 0xFF) * (1 - p), \
 		(color >> 24 & 0xFF) \
 	));
 }
