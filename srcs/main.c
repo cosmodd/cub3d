@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:47:43 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/12 09:32:18 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/12 16:10:25 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,22 @@
 // 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 // };
 
-int	map[10][10] = {
-	{ 1,1,1,1,1,1,1,1,1,1 },
-	{ 1,0,0,1,0,1,1,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,1,1,1,1,0,1,1,1,1 },
-	{ 1,1,0,0,0,0,1,0,0,1 },
-	{ 1,0,0,1,0,0,0,0,1,1 },
-	{ 1,1,1,1,0,1,1,1,1,1 },
-	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,1,1,0,1,0,0,1 },
-	{ 1,1,1,1,1,1,1,1,1,1 }
+int	map[15][15] = {
+	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,1,1,1,0,0,0,0,0,1,1,1,0,1 },
+	{ 1,0,1,1,1,0,0,0,0,0,1,1,1,0,1 },
+	{ 1,0,1,1,1,0,0,0,0,0,1,1,1,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,1,1,1,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,1,1,1,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,1,1,1,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,1,1,1,0,0,0,0,0,1,1,1,0,1 },
+	{ 1,0,1,1,1,0,0,0,0,0,1,1,1,0,1 },
+	{ 1,0,1,1,1,0,0,0,0,0,1,1,1,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
+	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
 };
 
 int	wall_texture[64][64] = {
@@ -276,8 +281,8 @@ void	init_cub(t_cub *cub)
 	cub->mlx = mlx_init();
 	cub->width = 1280;
 	cub->height = 720;
-	cub->map_width = 10;
-	cub->map_height = 10;
+	cub->map_width = 15;
+	cub->map_height = 15;
 	cub->window = mlx_new_window(cub->mlx, cub->width, cub->height, "Cub3D");
 	cub->frame = new_image(cub->mlx, cub->width, cub->height);
 	for (int y = 0; y < cub->height; y++)
@@ -470,24 +475,23 @@ void	draw_walls(t_cub *cub)
 			tex.y = (cur.y + (height / 2.0 - cub->height / 2.0) * (height >= cub->height)) * 63 / height;
 			put_pixel(cub->frame, cur.x, cur.y + \
 				(cub->height / 2.0 - height / 2.0) * (height < cub->height),
-				darken(wall_texture[(int)tex.y][(int)tex.x], ray.dist / cub->map_width + 0.3 * (ray.side % 2)));
+				darken(wall_texture[(int)tex.y][(int)tex.x], ray.dist / cub->map_width /* + 0.3 * (ray.side % 2) */));
 			cur.y++;
 		}
 		cur.y = cub->height / 2.0 + height / 2.0;
 		while (cur.y < cub->height)
 		{
-			beta = fabs(vec2_angle_from(dir, cub->player.dir));
-			rowDist = cub->height / (2 * cur.y - cub->height);
-			sld = rowDist / ray.dist;
-			sld = sld / cos(beta);
-			tex.x = sld * ray.pos.x + (1 - sld) * cub->player.pos.x;
-			tex.x = fmod(tex.x * 64.0, 64.0);
-			tex.y = sld * ray.pos.y + (1 - sld) * cub->player.pos.y;
-			tex.y = fmod(tex.y * 64.0, 64.0);
-			// put_pixel(cub->frame, cur.x, cur.y, floor_texture[(int)tex.y][(int)tex.x]);
+			beta = fabs(vec2_angle_from(cub->player.dir, dir));
+			rowDist = (cur.y - cub->height / 2.0) / cub->height / 2 * 64;
+			sld = 32 * cub->proj_dist / cub->proj_dist / rowDist;
+			sld = sld * 64 / cos(beta);
+			tex.x = cub->player.pos.x + cub->player.dir.x * sld;
+			tex.x = fmod(tex.x, 64.0);
+			tex.y = cub->player.pos.y - cub->player.dir.y * sld;
+			tex.y = fmod(tex.y, 64.0);
+			put_pixel(cub->frame, cur.x, cur.y, floor_texture[(int)tex.y][(int)tex.x]);
 			cur.y++;
 		}
-
 		dir = vec2_rotate(dir, cub->player.fov / (double)cub->width);
 		cur.x++;
 	}

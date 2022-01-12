@@ -56,7 +56,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "\033[A\033[2K$(INFO) Object files compiled $(NOCOL)"
-# @echo "$(VALID) minilibx compiled $(NOCOL)"
 	@$(CC) $(BIN_OPT) $^ -o $@
 	@echo "$(VALID) $@ $(NOCOL)"
 
