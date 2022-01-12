@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:47:43 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/11 16:06:23 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/12 09:32:18 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,6 +289,7 @@ void	init_cub(t_cub *cub)
 	cub->player.dir.x = 1;
 	cub->player.dir.y = 0;
 	cub->player.fov = rad(60);
+	cub->proj_dist = (cub->width / 2.0) / tan(cub->player.fov / 2.0);
 	memset(cub->keys, 0, sizeof(int) * 512);
 }
 
@@ -459,7 +460,7 @@ void	draw_walls(t_cub *cub)
 	while (cur.x < cub->width)
 	{
 		ray = raycast(cub, cub->player.pos, dir);
-		height = 64 / (ray.dist * cos(vec2_angle_from(cub->player.dir, dir))) * 20;
+		height = 64.0 / (64.0 * ray.dist * cos(vec2_angle_from(cub->player.dir, dir))) * cub->proj_dist;
 		cur.y = 0;
 		while (cur.y < cub->height && cur.y < height)
 		{
@@ -478,12 +479,12 @@ void	draw_walls(t_cub *cub)
 			beta = fabs(vec2_angle_from(dir, cub->player.dir));
 			rowDist = cub->height / (2 * cur.y - cub->height);
 			sld = rowDist / ray.dist;
-			// sld = sld / cos(beta);
+			sld = sld / cos(beta);
 			tex.x = sld * ray.pos.x + (1 - sld) * cub->player.pos.x;
 			tex.x = fmod(tex.x * 64.0, 64.0);
 			tex.y = sld * ray.pos.y + (1 - sld) * cub->player.pos.y;
 			tex.y = fmod(tex.y * 64.0, 64.0);
-			put_pixel(cub->frame, cur.x, cur.y, floor_texture[(int)tex.y][(int)tex.x]);
+			// put_pixel(cub->frame, cur.x, cur.y, floor_texture[(int)tex.y][(int)tex.x]);
 			cur.y++;
 		}
 
