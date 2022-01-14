@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:48:24 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/12 08:27:51 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/14 14:35:18 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_player
 	t_vec2	pos;
 	t_vec2	dir;
 	int		fov;
+	int		height;
 }	t_player;
 
 typedef struct s_cub
@@ -61,6 +62,8 @@ typedef struct s_cub
 	t_player	player;
 	t_image		frame;
 	t_image		minimap;
+	int			texture_res;
+	t_image		textures[3];
 }	t_cub;
 
 #endif

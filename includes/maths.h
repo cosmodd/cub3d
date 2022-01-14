@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 12:15:35 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/29 10:14:02 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/14 15:25:38 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int		abs_d(int a);
 float	abs_ff(float a);
 double	abs_fd(double a);
 int		min(int a, int b);
+double	min_d(double a, double b);
 int		max(int a, int b);
-
+double	max_d(double a, double b);
 
 // Angles
 double	rad(double degrees);

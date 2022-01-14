@@ -17,10 +17,10 @@ OBJS	= $(SRCS:.c=.o)
 CC		= gcc
 CFLAGS	= -Wall -Werror -Wextra -Ofast
 INCS	= -Iincludes -Iminilibx
-LIBS	= -Lminilibx -lmlx
+LIBS	= -lz -Lminilibx -lmlx
 OPTS	= -framework OpenGL -framework AppKit
 C_OPTS	= $(CFLAGS) $(INCS)
-BIN_OPT	= $(LIBS) $(OPTS) $(INCS)
+BIN_OPT	= $(LIBS) $(OPTS) $(INCS) -fsanitize=address
 
 # OTHER
 NAME	= cub3d

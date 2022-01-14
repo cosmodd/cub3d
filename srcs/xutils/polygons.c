@@ -6,13 +6,14 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:45:54 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/29 10:25:59 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/14 16:03:55 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "xutils.h"
 #include "maths.h"
-#include <stdio.h>
+#include <stdarg.h>
+#include <limits.h>
 
 static int	edge(t_point a, t_point b, t_point p)
 {

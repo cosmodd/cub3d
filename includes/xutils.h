@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:45:08 by mrattez           #+#    #+#             */
-/*   Updated: 2021/12/29 10:17:25 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/14 16:03:58 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_image
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_image;
 
 // Color utils
@@ -39,7 +41,10 @@ int		darken(int color, double percentage);
 
 // Image manipulation
 t_image	new_image(void *mlx, int width, int height);
+t_image	from_png_image(void *mlx, char *path);
+t_image	from_xpm_image(void *mlx, char *path);
 void	put_pixel(t_image image, int x, int y, int color);
+int		get_pixel(t_image image, int x, int y);
 
 // Polygons
 void	draw_square(t_image img, t_point origin, int size, int color);
