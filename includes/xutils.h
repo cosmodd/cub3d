@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:45:08 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/14 16:03:58 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/18 07:55:01 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	put_pixel(t_image image, int x, int y, int color);
 int		get_pixel(t_image image, int x, int y);
 
 // Polygons
-void	draw_square(t_image img, t_point origin, int size, int color);
+// void	draw_square(t_image img, t_point origin, int size, int color);
+void	draw_rect(t_image image, t_point start, t_point end, int color);
 void	draw_triangle(t_image image, t_point a, t_point b, t_point c);
 void	draw_line(t_image image, t_point origin, t_point dest, int color);
 

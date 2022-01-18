@@ -6,28 +6,23 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:47:43 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/14 16:14:19 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/18 08:38:19 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	map[15][48] = {
-	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,1,1,2,1,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,1,1,2,1,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 },
-	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
+int	map[10][10] = {
+	{ 1,1,1,1,1,1,1,1,1,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,0,0,1,1,2,1,0,1 },
+	{ 1,0,0,0,2,0,0,1,0,1 },
+	{ 1,0,0,0,1,0,0,2,0,1 },
+	{ 1,0,0,0,1,2,1,1,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,0,0,0,0,0,0,0,0,1 },
+	{ 1,1,1,1,1,1,1,1,1,1 }
 };
 
 int	key_press(int keycode, t_cub *cub)
@@ -93,8 +88,8 @@ void	init_cub(t_cub *cub)
 	cub->mlx = mlx_init();
 	cub->width = 720;
 	cub->height = 405;
-	cub->map_width = 48;
-	cub->map_height = 15;
+	cub->map_width = 10;
+	cub->map_height = 10;
 	cub->window = mlx_new_window(cub->mlx, cub->width, cub->height, "Cub3D");
 	cub->frame = new_image(cub->mlx, cub->width, cub->height);
 	for (int y = 0; y < cub->height; y++)
@@ -189,9 +184,9 @@ t_side	get_side(t_vec2 pos, t_vec2 dir, t_vec2 h_ray, t_vec2 v_ray)
 	dist_v = distance_fd(pos.x, pos.y, v_ray.x, v_ray.y);
 	angle = vec2_angle(dir);
 	if (dist_h < dist_v)
-		return (1 + 2 * (dir.y < -0.001));
+		return (3 - 2 * (dir.y < -0.001));
 	else
-		return (2 + 2 * (dir.x < -0.001));
+		return (4 - 2 * (dir.x < -0.001));
 }
 
 t_ray	raycast(t_cub *cub, t_vec2 pos, t_vec2 dir)
@@ -272,9 +267,10 @@ void	draw_minimap(t_cub *cub)
 	t_vec2	dir;
 	int		map_size;
 	int		size;
+	int		color;
 
 	map_size = cub->height / 4;
-	size = map_size / cub->map_height * 1.5;
+	size = map_size / cub->map_height;
 	pos = cub->player.pos;
 	dir = cub->player.dir;
 	mlx_destroy_image(cub->mlx, cub->minimap.ptr);
@@ -282,6 +278,19 @@ void	draw_minimap(t_cub *cub)
 	for (int y = 0; y < map_size; y++)
 		for (int x = 0; x < map_size * 2; x++)
 			put_pixel(cub->minimap, x, y, 0xCC000000);
+	for (int y = 0; y < cub->map_height; y++)
+		for (int x = 0; x < cub->map_width; x++)
+		{
+			color = !!map[y][x] * 0xCCFFFFFF + !map[y][x] * 0xCC000000;
+			draw_rect(cub->minimap,
+				(t_point){
+					map_size + (x - cub->player.pos.x) * size,
+					map_size / 2 + (y - cub->player.pos.y) * size},
+				(t_point){
+					map_size + x * size + size,
+					map_size / 2 + y * size + size},
+				color);
+		}
 	draw_triangle(cub->minimap,
 		(t_point){map_size + vec2_rotate(dir, rad(120)).x * size / 2, map_size / 2 + vec2_rotate(dir, rad(120)).y * size / 2},
 		(t_point){map_size + dir.x * size, map_size / 2 + dir.y * size},
@@ -363,7 +372,7 @@ int	draw(t_cub *cub)
 
 	// asprintf(&str, "Angle: %.0f°\n", arc(vec2_angle(cub->player.dir)));
 	handle_keys(cub);
-	draw_floor_sky(cub);
+	// draw_floor_sky(cub);
 	draw_minimap(cub);
 	draw_walls(cub);
 	end = clock();

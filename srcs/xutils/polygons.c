@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 13:45:54 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/14 16:03:55 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/18 08:07:32 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,36 @@ static int	edge(t_point a, t_point b, t_point p)
 	return ((p.x - a.x) * (b.y - a.y) - (p.y - a.y) * (b.x - a.x));
 }
 
-void	draw_square(t_image img, t_point origin, int size, int color)
-{
-	int	y;
-	int	x;
+// void	draw_square(t_image img, t_point origin, int size, int color)
+// {
+// 	int	y;
+// 	int	x;
 
-	y = 0;
-	while (y < size)
+// 	y = 0;
+// 	while (y < size)
+// 	{
+// 		x = 0;
+// 		while (x < size)
+// 		{
+// 			put_pixel(img, origin.x + x, origin.y + y, color);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
+
+void	draw_rect(t_image image, t_point start, t_point end, int color)
+{
+	int	x;
+	int	y;
+
+	y = max(start.y, 0);
+	while (y < min(end.y, image.height))
 	{
-		x = 0;
-		while (x < size)
+		x = max(start.x, 0);
+		while (x < min(end.x, image.width))
 		{
-			put_pixel(img, origin.x + x, origin.y + y, color);
-			x++;
+			put_pixel(image, x++, y, color);
 		}
 		y++;
 	}

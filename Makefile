@@ -15,12 +15,12 @@ OBJS	= $(SRCS:.c=.o)
 
 # COMPILATION
 CC		= gcc
-CFLAGS	= -Wall -Werror -Wextra -Ofast
+CFLAGS	= -Wall -Werror -Wextra -O3
 INCS	= -Iincludes -Iminilibx
 LIBS	= -lz -Lminilibx -lmlx
 OPTS	= -framework OpenGL -framework AppKit
 C_OPTS	= $(CFLAGS) $(INCS)
-BIN_OPT	= $(LIBS) $(OPTS) $(INCS) -fsanitize=address
+BIN_OPT	= $(LIBS) $(OPTS) $(INCS)
 
 # OTHER
 NAME	= cub3d
