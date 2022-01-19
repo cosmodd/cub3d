@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:48:24 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/14 14:35:18 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/18 11:04:59 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_cub
 	int			proj_dist;
 	int			map_width;
 	int			map_height;
+	int			res;
 	int			keys[512];
 	t_player	player;
 	t_image		frame;

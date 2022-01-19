@@ -6,23 +6,28 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:47:43 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/18 08:38:19 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/19 11:17:53 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	map[10][10] = {
-	{ 1,1,1,1,1,1,1,1,1,1 },
-	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,1,1,2,1,0,1 },
-	{ 1,0,0,0,2,0,0,1,0,1 },
-	{ 1,0,0,0,1,0,0,2,0,1 },
-	{ 1,0,0,0,1,2,1,1,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,1 },
-	{ 1,1,1,1,1,1,1,1,1,1 }
+int	map[15][48] = {
+	{ 1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
+	{ 2,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0 },
+	{ 1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0 },
+	{ 1,1,1,1,1,1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0 },
+	{ 0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1,0 },
+	{ 1,1,1,1,1,1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,1,1,1,1,1,1,0,0,1,0,0,1,0,0,1,1,1,1,0,0,1,0,0,0,0,0,1,0 },
+	{ 1,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0 },
+	{ 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0 },
+	{ 1,1,1,1,1,1,0,0,1,1,1,0,0,0,1,1,1,0,0,1,1,1,1,0,0,1,1,1,1,0,0,1,1,1,1,0,0,1,1,1,1,1,1,1,0,0,1,0 },
+	{ 0,0,0,0,0,1,0,0,1,0,1,1,0,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0 },
+	{ 0,0,0,0,0,1,0,0,1,0,0,1,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0 },
+	{ 0,0,0,0,0,1,0,0,1,1,1,1,0,1,1,1,1,0,0,1,1,1,1,0,0,1,0,0,1,1,1,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0 },
+	{ 0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0 },
+	{ 0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0 },
+	{ 0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 }
 };
 
 int	key_press(int keycode, t_cub *cub)
@@ -88,8 +93,8 @@ void	init_cub(t_cub *cub)
 	cub->mlx = mlx_init();
 	cub->width = 720;
 	cub->height = 405;
-	cub->map_width = 10;
-	cub->map_height = 10;
+	cub->map_width = 48;
+	cub->map_height = 15;
 	cub->window = mlx_new_window(cub->mlx, cub->width, cub->height, "Cub3D");
 	cub->frame = new_image(cub->mlx, cub->width, cub->height);
 	for (int y = 0; y < cub->height; y++)
@@ -107,6 +112,7 @@ void	init_cub(t_cub *cub)
 	cub->textures[2] = from_xpm_image(cub->mlx, "assets/door.xpm");
 	cub->texture_res = cub->textures[0].width;
 	cub->player.height = cub->texture_res / 2;
+	cub->res = 1;
 	memset(cub->keys, 0, sizeof(int) * 512);
 }
 
@@ -281,14 +287,16 @@ void	draw_minimap(t_cub *cub)
 	for (int y = 0; y < cub->map_height; y++)
 		for (int x = 0; x < cub->map_width; x++)
 		{
-			color = !!map[y][x] * 0xCCFFFFFF + !map[y][x] * 0xCC000000;
+			if (map[y][x] == 0) continue ;
+			color = (map[y][x] == 1) * 0xAAFFFFFF
+				+ (map[y][x] == 2) * 0xAA7161EF;
 			draw_rect(cub->minimap,
 				(t_point){
 					map_size + (x - cub->player.pos.x) * size,
 					map_size / 2 + (y - cub->player.pos.y) * size},
 				(t_point){
-					map_size + x * size + size,
-					map_size / 2 + y * size + size},
+					map_size + (x - cub->player.pos.x) * size + size,
+					map_size / 2 + (y - cub->player.pos.y) * size + size},
 				color);
 		}
 	draw_triangle(cub->minimap,
@@ -323,10 +331,14 @@ void	draw_walls(t_cub *cub)
 				cub->frame,
 				cur.x, cur.y + cub->height / 2 - height / 2,
 				darken(get_pixel(cub->textures[ray.value], tex.x, tex.y), ray.dist / cub->map_height));
+			draw_rect(cub->frame,
+				(t_point){cur.x, cur.y + cub->height / 2 - height / 2},
+				(t_point){cur.x + cub->res, cur.y + cub->height / 2 - height / 2 + cub->res},
+				darken(get_pixel(cub->textures[ray.value], tex.x, tex.y), ray.dist / cub->map_height));
 			// tex.y = (cur.y + (height / 2.0 - cub->height / 2.0) * (height >= cub->height)) * cub->texture_res / height;
 			// put_pixel(cub->frame, cur.x, cur.y + \
 			// 	(cub->height / 2.0 - height / 2.0) * (height < cub->height),
-			// 	darken(wall_texture[(int)tex.y][(int)tex.x], ray.dist / cub->map_width /* + 0.3 * (ray.side % 2) */));
+			// 	darken(wall_texture[(int)tex.y][(int)tex.x], ray.dist / cub->map_width + 0.3 * (ray.side % 2)));
 			// if (ray.value == 1)
 			// 	put_pixel(cub->frame, cur.x, cur.y + \
 			// 		(cub->height / 2.0 - height / 2.0) * (height < cub->height),
@@ -335,7 +347,7 @@ void	draw_walls(t_cub *cub)
 			// 	put_pixel(cub->frame, cur.x, cur.y + \
 			// 		(cub->height / 2.0 - height / 2.0) * (height < cub->height),
 			// 		darken(get_pixel(cub->textures[2], tex.x, tex.y), ray.dist / cub->map_width));
-			cur.y++;
+			cur.y += cub->res;
 		}
 		cur.y = cub->height / 2.0 + height / 2.0;
 		while (cur.y < cub->height)
@@ -348,18 +360,27 @@ void	draw_walls(t_cub *cub)
 			tex.x = fmod(tex.x, cub->texture_res);
 			tex.y = cub->player.pos.y * cub->texture_res + dir.y * straightDist;
 			tex.y = fmod(tex.y, cub->texture_res);
-			put_pixel(
-				cub->frame,
-				cur.x, cur.y,
+			// put_pixel(
+			// 	cub->frame,
+			// 	cur.x, cur.y,
+			// 	darken(get_pixel(cub->textures[0], tex.x, tex.y), straightDist / cub->texture_res / cub->map_height));
+			draw_rect(cub->frame,
+				(t_point){cur.x, cur.y},
+				(t_point){cur.x + cub->res, cur.y +cub->res},
 				darken(get_pixel(cub->textures[0], tex.x, tex.y), straightDist / cub->texture_res / cub->map_height));
-			put_pixel(
-				cub->frame,
-				cur.x, cub->height / 2 - height / 2 - (cur.y - cub->height / 2 - height / 2),
-				darken(get_pixel(cub->textures[1], tex.x, tex.y), straightDist / cub->texture_res / cub->map_height));
-			cur.y++;
+			draw_rect(cub->frame,
+				(t_point){cur.x, cub->height / 2 - height / 2 - (cur.y - cub->height / 2 - height / 2)},
+				(t_point){cur.x + cub->res, cub->height / 2 - height / 2 - (cur.y - cub->height / 2 - height / 2) + cub->res},
+				darken(get_pixel(cub->textures[0], tex.x, tex.y), straightDist / cub->texture_res / cub->map_height));
+			// put_pixel(
+			// 	cub->frame,
+			// 	cur.x, cub->height / 2 - height / 2 - (cur.y - cub->height / 2 - height / 2),
+			// 	darken(get_pixel(cub->textures[0], tex.x, tex.y), straightDist / cub->texture_res / cub->map_height));
+			cur.y += cub->res;
 		}
-		dir = vec2_rotate(dir, cub->player.fov / (double)cub->width);
-		cur.x++;
+		dir = vec2_rotate(dir,
+			cub->player.fov / ((double)cub->width / (double)cub->res));
+		cur.x += cub->res;
 	}
 }
 
@@ -372,6 +393,9 @@ int	draw(t_cub *cub)
 
 	// asprintf(&str, "Angle: %.0f°\n", arc(vec2_angle(cub->player.dir)));
 	handle_keys(cub);
+	for (int y = 0; y < cub->height; y++)
+		for (int x = 0; x < cub->width; x++)
+			put_pixel(cub->frame, x, y, 0x000000);
 	// draw_floor_sky(cub);
 	draw_minimap(cub);
 	draw_walls(cub);
