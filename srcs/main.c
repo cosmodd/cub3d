@@ -6,24 +6,24 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:47:43 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/20 13:22:38 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/24 11:54:17 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 int	map[11][17] = {
-	{ 1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1 },
-	{ 1,0,0,1,1,2,1,1,0,0,1,0,1,0,0,0,1 },
-	{ 1,0,0,1,0,0,0,1,0,0,1,1,1,1,2,1,1 },
-	{ 1,0,0,2,0,0,0,2,0,0,1,0,0,0,0,0,1 },
-	{ 1,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,1 },
-	{ 1,0,0,1,1,2,1,1,0,0,2,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1 },
-	{ 1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1 },
-	{ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 1, 1, 2, 1, 1, 0, 0,-1, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 1, 0, 0, 0,-1, 0, 0, 1, 1, 1, 1, 2, 1, 1 },
+	{ 1, 0, 0, 2, 0, 0, 0,-1, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 1, 0, 0, 0,-1, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 1, 1, 2, 1, 1, 0, 0, 2, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 };
 
 int	key_press(int keycode, t_cub *cub)
@@ -106,6 +106,7 @@ void	init_cub(t_cub *cub)
 	cub->textures[0] = from_xpm_image(cub->mlx, "assets/CASFL27.xpm");
 	cub->textures[1] = from_xpm_image(cub->mlx, "assets/C4.xpm");
 	cub->textures[2] = from_xpm_image(cub->mlx, "assets/CASL19.xpm");
+	cub->textures[3] = from_xpm_image(cub->mlx, "assets/C88.xpm");
 	cub->texture_res = cub->textures[0].width;
 	cub->player.height = cub->texture_res / 2;
 	cub->frameCount = 0;
@@ -208,6 +209,23 @@ t_ray	raycast(t_cub *cub, t_vec2 pos, t_vec2 dir)
 	return (ray);
 }
 
+t_ray	continue_ray(t_cub *cub, t_ray ray, t_vec2 dir)
+{
+	t_vec2	rays[2];
+	double	dists[2];
+	t_ray	new_ray;
+
+	rays[0] = h_ray(cub, ray.pos, dir);
+	rays[1] = v_ray(cub, ray.pos, dir);
+	dists[0] = distance_fd(ray.pos.x, ray.pos.y, rays[0].x, rays[0].y);
+	dists[1] = distance_fd(ray.pos.x, ray.pos.y, rays[1].x, rays[1].y);
+	new_ray.pos = rays[dists[0] > dists[1]];
+	new_ray.dist = dists[dists[0] > dists[1]] + ray.dist;
+	new_ray.side = get_side(ray.pos, dir, rays[0], rays[1]);
+	new_ray.value = map[(int)new_ray.pos.y][(int)new_ray.pos.x];
+	return (new_ray);
+}
+
 void	draw_floor_sky(t_cub *cub)
 {
 	int	x;
@@ -251,7 +269,8 @@ void	draw_minimap(t_cub *cub)
 		{
 			if (map[y][x] == 0) continue ;
 			color = (map[y][x] == 1) * 0xAAFFFFFF
-				+ (map[y][x] == 2) * 0xAA7161EF;
+				+ (map[y][x] == 2) * 0xAA7161EF
+				+ (map[y][x] == -1) * 0xAA555555;
 			draw_rect(cub->minimap,
 				(t_point){
 					map_size + (x - cub->player.pos.x) * size,
@@ -272,6 +291,64 @@ int	get_wall_height(t_cub *cub, t_ray ray, t_vec2 dir)
 	return cub->texture_res / (cub->texture_res * ray.dist * cos(vec2_angle_from(cub->player.dir, dir))) * cub->proj_dist;;
 }
 
+void	draw_wall_stripe(t_cub *cub, t_ray ray, t_vec2 dir, t_vec2 infos)
+{
+	t_vec2	current;
+	t_vec2	texture;
+	int		height;
+	int		pixel;
+
+	height = get_wall_height(cub, ray, dir);
+	current.y = 0;
+	while (current.y < height)
+	{
+		texture.x = fmod(ray.pos.x, 1) * cub->texture_res;
+		if (ray.side % 2 == 0)
+			texture.x = fmod(ray.pos.y, 1) * cub->texture_res;
+		texture.y = (current.y * cub->texture_res) / height;
+		pixel = get_pixel(cub->textures[(int)infos.y], texture.x, texture.y);
+		if ((pixel >> 24 & 0xFF) == 0)
+			put_pixel(cub->frame,
+				infos.x, current.y + cub->height / 2 - height / 2,
+				darken(pixel, ray.dist / cub->map_height));
+		current.y++;
+	}
+}
+
+void	draw_floor_stripe(t_cub *cub, t_ray ray, t_vec2 dir, t_vec2 infos)
+{
+	t_vec2	current;
+	t_vec2	texture;
+	double	beta;
+	double	dist;
+	int		height;
+	int		rowDist;
+
+	height = get_wall_height(cub, ray, dir);
+	current.y = cub->height / 2 + height / 2;
+	while (current.y < cub->height)
+	{
+		beta = vec2_angle_from(cub->player.dir, dir);
+		rowDist = current.y - cub->height / 2;
+		dist = (double)cub->player.height / rowDist * cub->proj_dist;
+		dist = dist / cos(beta);
+		texture.x = cub->player.pos.x * cub->texture_res + dir.x * dist;
+		texture.x = fmod(texture.x, cub->texture_res);
+		texture.y = cub->player.pos.y * cub->texture_res + dir.y * dist;
+		texture.y = fmod(texture.y, cub->texture_res);
+		put_pixel(
+				cub->frame,
+				infos.x, current.y,
+				darken(get_pixel(cub->textures[0], texture.x, texture.y), dist / cub->texture_res / cub->map_height));
+		if (infos.y)
+			put_pixel(
+					cub->frame,
+					infos.x, cub->height / 2 - height / 2 - (current.y - cub->height / 2 - height / 2),
+					darken(get_pixel(cub->textures[0], texture.x, texture.y), dist / cub->texture_res / cub->map_height));
+		current.y++;
+	}
+}
+
 void	draw_walls(t_cub *cub)
 {
 	t_ray	ray;
@@ -279,8 +356,6 @@ void	draw_walls(t_cub *cub)
 	t_vec2	dir;
 	t_vec2	cur;
 	t_vec2	tex;
-	double	beta, straightDist;
-	int		height, rowDist;
 
 	cur.x = 0;
 	tex.y = 0;
@@ -290,42 +365,19 @@ void	draw_walls(t_cub *cub)
 		ray = raycast(cub, cub->player.pos, dir);
 		behind = raycast(cub, ray.pos, dir);
 		behind.dist += ray.dist;
-		height = get_wall_height(cub, ray, dir);
-		cur.y = 0;
-		while (cur.y < height && tex.y < 64)
+		if (ray.value < 0)
 		{
-			tex.x = fmod(ray.pos.x, 1) * cub->texture_res;
-			if (ray.side % 2 == 0)
-				tex.x = fmod(ray.pos.y, 1) * cub->texture_res;
-			tex.y = cur.y * cub->texture_res / height;
-			put_pixel(
-				cub->frame,
-				cur.x, cur.y + cub->height / 2 - height / 2,
-				darken(get_pixel(cub->textures[ray.value], tex.x, tex.y), ray.dist / cub->map_height));
-			cur.y++;
+			while (behind.value < 0)
+				behind = continue_ray(cub, behind, dir);
+			draw_wall_stripe(cub, behind, dir, (t_vec2){cur.x, behind.value});
+			draw_floor_stripe(cub, behind, dir, (t_vec2){cur.x, 1});
+			draw_wall_stripe(cub, ray, dir, (t_vec2){cur.x, abs(ray.value) + 2});
+			draw_floor_stripe(cub, ray, dir, (t_vec2){cur.x, 1});
 		}
-		cur.y = cub->height / 2.0 + height / 2.0;
-		while (cur.y < cub->height)
+		else
 		{
-			beta = vec2_angle_from(cub->player.dir, dir);
-			rowDist = cur.y - cub->height / 2.0;
-			straightDist = (double)cub->player.height / rowDist * cub->proj_dist;
-			straightDist = straightDist / cos(beta);
-			tex.x = cub->player.pos.x * cub->texture_res + dir.x * straightDist;
-			tex.x = fmod(tex.x, cub->texture_res);
-			tex.y = cub->player.pos.y * cub->texture_res + dir.y * straightDist;
-			tex.y = fmod(tex.y, cub->texture_res);
-			// FLOOR TEXTURE
-			put_pixel(
-				cub->frame,
-				cur.x, cur.y,
-				darken(get_pixel(cub->textures[0], tex.x, tex.y), straightDist / cub->texture_res / cub->map_height));
-			// CEILING TEXTURE
-			put_pixel(
-				cub->frame,
-				cur.x, cub->height / 2 - height / 2 - (cur.y - cub->height / 2 - height / 2),
-				darken(get_pixel(cub->textures[0], tex.x, tex.y), straightDist / cub->texture_res / cub->map_height));
-			cur.y++;
+			draw_wall_stripe(cub, ray, dir, (t_vec2){cur.x, ray.value});
+			draw_floor_stripe(cub, ray, dir, (t_vec2){cur.x, 1});
 		}
 		dir = vec2_rotate(dir, cub->player.fov / (double)cub->width);
 		cur.x++;

@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:44:04 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/14 14:28:39 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/24 09:40:18 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_image	from_xpm_image(void *mlx, char *path)
 	t_image	image;
 
 	image.ptr = mlx_xpm_file_to_image(mlx, path, &image.width, &image.height);
-	// printf("Pointer to xpm image = %p\n", image.ptr);
 	image.addr = mlx_get_data_addr(
 			image.ptr,
 			&image.bits_per_pixel,

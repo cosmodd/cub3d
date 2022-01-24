@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:48:24 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/20 12:53:32 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/24 10:52:38 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_cub
 	t_image		frame;
 	t_image		minimap;
 	int			texture_res;
-	t_image		textures[3];
+	t_image		textures[4];
 }	t_cub;
 
 #endif
