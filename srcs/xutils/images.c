@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:44:04 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/24 09:40:18 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/26 09:39:35 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,24 @@ t_image	new_image(void *mlx, int width, int height)
 	return (image);
 }
 
+void	scale_up(void *mlx, t_image *image, int factor)
+{
+	t_image	scaled;
+	int		x;
+	int		y;
+
+	scaled = new_image(mlx, image->width * factor, image->height * factor);
+	y = -1;
+	while (++y < image->height * factor)
+	{
+		x = -1;
+		while (++x < image->width * factor)
+			put_pixel(scaled, x, y, get_pixel(*image, x / factor, y / factor));
+	}
+	mlx_destroy_image(mlx, image->ptr);
+	*image = scaled;
+}
+
 t_image	from_png_image(void *mlx, char *path)
 {
 	t_image	image;
@@ -39,8 +57,6 @@ t_image	from_png_image(void *mlx, char *path)
 			&image.endian);
 	return (image);
 }
-
-#include <stdio.h>
 
 t_image	from_xpm_image(void *mlx, char *path)
 {

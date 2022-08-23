@@ -24,7 +24,7 @@ BIN_OPT	= $(LIBS) $(OPTS) $(INCS)
 
 # OTHER
 NAME	= cub3d
-RETURN	=
+SHELL	= zsh
 
 # COLORS
 BG_RD	= \033[48;2;237;66;69m
@@ -49,13 +49,12 @@ DEL		= $(BOLD)$(FG_WH)$(BG_RD) $(CROSS)
 	@make -sC minilibx
 	@$(CC) $(C_OPTS) -c $< -o $@
 	@$(RETURN)
-	@echo "\033[2K$(INFO) $(notdir $@) $(NOCOL)"
-	$(eval RETURN = echo "\033[2A")
+	@echo -n "\033[1000D\033[2K$(INFO) $(notdir $@) $(NOCOL)"
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "\033[A\033[2K$(INFO) Object files compiled $(NOCOL)"
+	@echo "\033[1000D\033[2K$(INFO) Object files compiled $(NOCOL)"
 	@$(CC) $(BIN_OPT) $^ -o $@
 	@echo "$(VALID) $@ $(NOCOL)"
 

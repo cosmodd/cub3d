@@ -6,7 +6,7 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:45:08 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/18 07:55:01 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/01/25 10:39:14 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		darken(int color, double percentage);
 
 // Image manipulation
 t_image	new_image(void *mlx, int width, int height);
+void	scale_up(void *mlx, t_image *image, int factor);
 t_image	from_png_image(void *mlx, char *path);
 t_image	from_xpm_image(void *mlx, char *path);
 void	put_pixel(t_image image, int x, int y, int color);

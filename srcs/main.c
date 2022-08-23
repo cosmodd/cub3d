@@ -6,30 +6,46 @@
 /*   By: mrattez <mrattez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 09:47:43 by mrattez           #+#    #+#             */
-/*   Updated: 2022/01/24 11:54:17 by mrattez          ###   ########.fr       */
+/*   Updated: 2022/05/03 13:33:45 by mrattez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	map[11][17] = {
-	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 1, 1, 2, 1, 1, 0, 0,-1, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 1, 0, 0, 0,-1, 0, 0, 1, 1, 1, 1, 2, 1, 1 },
-	{ 1, 0, 0, 2, 0, 0, 0,-1, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 1, 0, 0, 0,-1, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 1, 1, 2, 1, 1, 0, 0, 2, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1 },
-	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+int	map[17][15] = {
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 2, 2, 1,-1,-1, 1, 1, 1, 1, 1 },
+	{ 1, 0, 0, 0,-1, 0, 0, 0, 0, 0,-1, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 },
+	{ 1, 0, 0, 0,-1, 0, 0, 0, 0, 0,-1, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 },
+	{ 1, 0, 0, 0,-1, 0, 0, 0, 0, 0,-1, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 };
 
 int	key_press(int keycode, t_cub *cub)
 {
+	int	x;
+	int	y;
+
 	if (keycode == ESC)
 		exit(0);
+	if (keycode == K_E)
+	{
+		x = cub->player.pos.x + cub->player.dir.x;
+		y = cub->player.pos.y + cub->player.dir.y;
+		if (map[y][x] == 2)
+			map[y][x] = 0;
+	}
 	cub->keys[keycode] = 1;
 	return (0);
 }
@@ -89,8 +105,8 @@ void	init_cub(t_cub *cub)
 	cub->mlx = mlx_init();
 	cub->width = 720;
 	cub->height = 405;
-	cub->map_width = 17;
-	cub->map_height = 11;
+	cub->map_width = 15;
+	cub->map_height = 17;
 	cub->window = mlx_new_window(cub->mlx, cub->width, cub->height, "Cub3D");
 	cub->frame = new_image(cub->mlx, cub->width, cub->height);
 	for (int y = 0; y < cub->height; y++)
@@ -107,6 +123,8 @@ void	init_cub(t_cub *cub)
 	cub->textures[1] = from_xpm_image(cub->mlx, "assets/C4.xpm");
 	cub->textures[2] = from_xpm_image(cub->mlx, "assets/CASL19.xpm");
 	cub->textures[3] = from_xpm_image(cub->mlx, "assets/C88.xpm");
+	cub->sprites[0] = from_xpm_image(cub->mlx, "assets/unmaykr.xpm");
+	scale_up(cub->mlx, &cub->sprites[0], 4);
 	cub->texture_res = cub->textures[0].width;
 	cub->player.height = cub->texture_res / 2;
 	cub->frameCount = 0;
@@ -399,10 +417,22 @@ int	draw(t_cub *cub)
 	// draw_floor_sky(cub);
 	draw_minimap(cub);
 	draw_walls(cub);
+	draw_rect(cub->frame,
+		(t_point){cub->width / 2 - 1, cub->height / 2 - 5},
+		(t_point){cub->width / 2 + 1, cub->height / 2 + 5},
+		0x00FFFFFF);
+	draw_rect(cub->frame,
+		(t_point){cub->width / 2 - 5, cub->height / 2 - 1},
+		(t_point){cub->width / 2 + 5, cub->height / 2 + 1},
+		0x00FFFFFF);
 	end = clock();
 	asprintf(&clock_str, "%.0f FPS\n", 1.0 / ((double)(end-start) / CLOCKS_PER_SEC));
 	mlx_put_image_to_window(cub->mlx, cub->window, cub->frame.ptr, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->window, cub->minimap.ptr, 0, 0);
+	mlx_put_image_to_window(cub->mlx, cub->window,
+		cub->sprites[0].ptr,
+		cub->width / 2 - cub->sprites[0].width / 2,
+		cub->height - cub->sprites[0].height);
 	// mlx_string_put(cub->mlx, cub->window, 10, cub->height / 2 - 10, 0xFFFFFF, str);
 	mlx_string_put(cub->mlx, cub->window, 10, cub->height / 2 - 20, 0xFFFFFF, clock_str);
 	free(str);
